@@ -1,0 +1,499 @@
+#:import utils kivy.utils
+#:import Clock kivy.clock.Clock
+<CalcScreen>:
+    rwy1: rwy1.__self__
+    rwy2: rwy2.__self__
+    rwy3: rwy3.__self__
+    rwy4: rwy4.__self__
+    rwy5: rwy5.__self__
+    rwy6: rwy6.__self__
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#000000")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:
+        id: airport_tile
+        markup: True
+        text: "The airport name"
+        font_size: '20sp'
+        pos_hint: {"top": 1, "center_x": .5}
+        size_hint: 1, .1
+    GridLayout:
+        rows: 1
+        id: rwy5
+        pos_hint: {"top": .9, "center_x": .125}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+
+    GridLayout:
+        rows: 1
+        id: rwy3
+        pos_hint: {"top": .9, "center_x": .275}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        id: rwy1
+        pos_hint: {"top": .9, "center_x": .425}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        id: rwy2
+        pos_hint: {"top": .9, "center_x": .575}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        id: rwy4
+        pos_hint: {"top": .9, "center_x": .725}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        id: rwy6
+        pos_hint: {"top": .9, "center_x": .875}
+        size_hint: .14, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: ""
+            markup: True
+            font_size: '20sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['runway_'].text = self.text
+                app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .8, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedText:
+            id: ldg_wt
+            markup: True
+            multiline: False
+            font_size: '20sp'
+            hint_text: "landing weight kg"
+            opacity: 1 if self.text else .7
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            padding_x: [10, 0]
+            text: self.text.upper() if self.text is not None else ''
+            size_hint: .3, .08
+            pos_hint: {"top": .8, "center_x": .5}
+            on_focus:
+                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+                app.root.ids['calc_screen'].ids['_ldg_wt'].text=  '[b][color=#3E9933]' + ldg_wt.text + " KG[/color][/b]"
+                app.root.ids['calc_screen'].ids['ldg_wt_'].text = self.text
+                app.enable_button()
+
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .7, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: "FLAP 10"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text +'[/color][/b]'
+                app.root.ids['calc_screen'].ids['flap_'].text = self.text
+                app.enable_button()
+        RoundedButton:
+            text: "FLAP 15"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['flap_'].text = self.text
+                app.enable_button()
+        RoundedButton:
+            text: "FLAP 35"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text + '[/color][/b]'
+                app.root.ids['calc_screen'].ids['flap_'].text = self.text
+                app.enable_button()
+
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .6, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedText:
+            id: wind
+            markup: True
+            multiline: False
+            font_size: '20sp'
+            hint_text: "ldg wind"
+            opacity: 1 if self.text else .7
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            padding_x: [10, 0]
+            text: self.text.upper() if self.text is not None else ''
+            on_focus:
+                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+
+        RoundedButton:
+            text: "HEAD"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            disabled: True if wind.text == '' else False
+            on_press:
+                app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT HEADWIND[/color][/b]"
+                app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT HEADWIND"
+                app.enable_button()
+        RoundedButton:
+            text: "TAIL"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            disabled: True if wind.text == '' else False
+            on_press:
+                app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT TAILWIND[/color][/b]"
+                app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT TAILWIND"
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .5, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedText:
+            id: vapp_add
+            markup: True
+            multiline: False
+            font_size: '20sp'
+            hint_text: "knots above Vref"
+            opacity: 1 if self.text else .7
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            padding_x: [10, 0]
+            text: self.text.upper() if self.text is not None else ''
+            size_hint: .3, .08
+            pos_hint: {"top": .4, "center_x": .5}
+            on_focus:
+                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+                app.vapp_vref_txt()
+                app.root.ids['calc_screen'].ids['vapp_add_'].text= vapp_add.text
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .4, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: "REDUCED NP"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]REDUCED NP[/color][/b]"
+                app.root.ids['calc_screen'].ids['reduced_np_'].text= "REDUCED NP"
+                app.enable_button()
+        RoundedButton:
+            text: "1020 RPM"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]1020 RPM[/color][/b]"
+                app.root.ids['calc_screen'].ids['reduced_np_'].text= "1020 RPM"
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .3, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: "REF SPEEDS INCR"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS INCR[/color][/b]"
+                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS INCR"
+                app.enable_button()
+        RoundedButton:
+            text: "REF SPEEDS OFF"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS OFF[/color][/b]"
+                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS OFF"
+                app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .2, "center_x": .256}
+        size_hint: .4, .08
+        spacing: 5, 5
+        RoundedButton:
+            text: "WET RWY"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]WET RUNWAY[/color][/b]"
+                app.root.ids['calc_screen'].ids['wet_dry_'].text= "WET"
+                app.enable_button()
+        RoundedButton:
+            text: "DRY RWY"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]DRY RUNWAY[/color][/b]"
+                app.root.ids['calc_screen'].ids['wet_dry_'].text= "DRY"
+                app.enable_button()
+    Label:
+        id: title_text
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .8, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[b][u]REQUIRED INPUTS IN RED[/u][/b]"
+    Label:
+        id: _rwy
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .7, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]RUNWAY[/color]"
+    Label:
+        id: _ldg_wt
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .65, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]WEIGHT[/color]"
+    Label:
+        id: flap
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .6, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]FLAP[/color]"
+    Label:
+        id: _wind
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .55, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#E5E542]WIND[/color]"
+    Label:
+        id: _vapp_add
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .5, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]VAPP[/color]"
+    Label:
+        id: reduced_np
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .45, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]REDUCED/1020RPM[/color]"
+    Label:
+        id: ref_speeds
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .4, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]REF SPEEDS[/color]"
+    Label:
+        id: wet_dry
+        rows: 1
+        markup: True
+        font_size: '20sp'
+        pos_hint: {"top": .35, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+        text: "[color=#FF3D16]WET OR DRY[/color]"
+    ClearBox:
+        pos_hint: {"top": .2, "center_x": .7}
+        size_hint: .45, .16
+    Label:
+        id: lda_txt
+        rows: 1
+        markup: True
+        font_size: '23sp'
+        pos_hint: {"top": .2, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+    Label:
+        id: ldr_txt
+        rows: 1
+        markup: True
+        font_size: '24sp'
+        pos_hint: {"top": .1, "center_x": .7}
+        size_hint: .45, .05
+        markup: True
+
+    Label:
+        id: runway_
+        opacity: 0
+    Label:
+        id: ldg_wt_
+        opacity: 0
+    Label:
+        id: flap_
+        opacity: 0
+    Label:
+        id: wind_
+        text: ''
+        opacity: 0
+    Label:
+        id: vapp_add_
+        opacity: 0
+    Label:
+        id: reduced_np_
+        opacity: 0
+    Label:
+        id: ref_speeds_
+        opacity: 0
+    Label:
+        id: wet_dry_
+        opacity: 0
+
+
+    RoundedButton:
+        text: "Calculate"
+        id: go_button
+        markup: True
+        font_size: '20sp'
+        pos_hint:  {"top": .3, "center_x": .7}
+        size_hint: .3, .08
+        padding: 20, 20
+        opacity: 1 if self.state == 'normal' else .5
+        disabled: True
+        on_release:
+            app.store_units()
+    RoundedBackButton:
+        text: "Back"
+        id: back_button
+        markup: True
+        font_size: '20sp'
+        pos_hint:  {"top": .1, "center_x": .156}
+        size_hint: .2, .08
+        padding: 20, 20
+        opacity: 1 if self.state == 'normal' else .5
+        on_release:
+            app.change_screen("home_screen")
+            app.remove_rwy_buttons()
+
+<RoundedBackButton@Button>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    back_color: (1,0,1,1)
+    border_radius: [15]
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex("#1C6426")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [15]
+<ClearBox@Label>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    back_color: utils.get_color_from_hex("#FBBF34")
+    border_radius: 18
+    color: self.back_color
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex("#FBBF34")
+        Line:
+            rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
+            width: 1.5

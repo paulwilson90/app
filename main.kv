@@ -1,0 +1,20 @@
+#:include kv/home_screen.kv
+#:include kv/calc_screen.kv
+GridLayout:
+    cols: 1
+    FloatLayout:
+        GridLayout:
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#EEEEEE")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        ScreenManager:
+            id: screen_manager
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            CalcScreen:
+                name: "calc_screen"
+                id: calc_screen
