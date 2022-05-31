@@ -2,6 +2,7 @@ import json
 import math
 import re
 import time
+from kivy.clock import Clock
 from threading import Thread
 from kivy.app import App
 from kivy.lang import Builder
@@ -70,24 +71,22 @@ class MainApp(App):
         lda = re.search(r'\d{4}m', self.root.ids['calc_screen'].ids['lda_txt'].text).group()[:-1]
         if int(lda) < int(ldr):
             colour = 'FF3D16'  # red
-            self.thread()
+            self.op = 0
+            self.flash = Clock.schedule_interval(self.flashing_ldr, 0.2)
+            Clock.schedule_once(self.cancel_flash, 1.2)
         else:
             colour = '3E9933'  # green
         self.root.ids['calc_screen'].ids['ldr_txt'].text = f"[b][u][color=#{colour}]LDR IS " + ldr + "m[/color][/u][/b]"
 
-    def thread(self):
-        p3 = Thread(target=lambda: self.flashing_ldr())
-        p3.start()
+    def flashing_ldr(self, *args):
+        self.root.ids['calc_screen'].ids['ldr_txt'].opacity = self.op
+        if self.op == 1:
+            self.op -= 1
+        else:
+            self.op += 1
 
-    def flashing_ldr(self):
-        op = 1
-        for r in range(7):
-            self.root.ids['calc_screen'].ids['ldr_txt'].opacity = op
-            if op == 1:
-                op -= 1
-            else:
-                op += 1
-            time.sleep(.3)
+    def cancel_flash(self, *args):
+        self.flash.cancel()
 
     def change_screen(self, screen_name):
         # get the screen manager from the main.kv file
