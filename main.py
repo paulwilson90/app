@@ -1,9 +1,7 @@
 import json
 import math
 import re
-import time
 from kivy.clock import Clock
-from threading import Thread
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
@@ -35,11 +33,24 @@ class MainApp(App):
         self.root.ids['calc_screen'].remove_widget(rwy5)
         self.root.ids['calc_screen'].remove_widget(rwy6)
 
+    def restore_original_text(self):
+        self.root.ids['calc_screen'].ids['_rwy'].text = "[color=#FF3D16]RUNWAY[/color]"
+        self.root.ids['calc_screen'].ids['_ldg_wt'].text = "[color=#FF3D16]WEIGHT[/color]"
+        self.root.ids['calc_screen'].ids['flap'].text = "[color=#FF3D16]FLAP[/color]"
+        self.root.ids['calc_screen'].ids['_wind'].text = "[color=#E5E542]WIND[/color]"
+        self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
+        self.root.ids['calc_screen'].ids['reduced_np'].text = "[color=#FF3D16]REDUCED/1020RPM[/color]"
+        self.root.ids['calc_screen'].ids['ref_speeds'].text = "[color=#FF3D16]REF SPEEDS[/color]"
+        self.root.ids['calc_screen'].ids['wet_dry'].text = "[color=#FF3D16]WET OR DRY[/color]"
+        self.root.ids['calc_screen'].ids['lda_txt'].text = ""
+        self.root.ids['calc_screen'].ids['ldr_txt'].text = ""
+        self.root.ids['home_screen'].ids['error_text'].text = ""
+
+
     def enable_button(self):
         runway_ = self.root.ids['calc_screen'].ids['runway_'].text
         ldg_wt_ = self.root.ids['calc_screen'].ids['ldg_wt_'].text
         flap_ = self.root.ids['calc_screen'].ids['flap_'].text
-        wind_ = self.root.ids['calc_screen'].ids['wind_'].text
         vapp_add_ = self.root.ids['calc_screen'].ids['vapp_add_'].text
         reduced_np_ = self.root.ids['calc_screen'].ids['reduced_np_'].text
         ref_speeds_ = self.root.ids['calc_screen'].ids['ref_speeds_'].text
@@ -53,10 +64,20 @@ class MainApp(App):
 
     def vapp_vref_txt(self):
         vapp_add = self.root.ids['calc_screen'].ids['vapp_add']
-        if vapp_add.text == '0':
-            self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#3E9933]VAPP = VREF[/color][/b]"
+        if not vapp_add.text.isdigit():
+            self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
         else:
-            self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#3E9933]VREF + " + vapp_add.text + '[/color][/b]'
+            if vapp_add.text == '0':
+                self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#3E9933]VAPP = VREF[/color][/b]"
+            else:
+                self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#3E9933]VREF + " + vapp_add.text + '[/color][/b]'
+
+    def ldg_wt_txt(self):
+        ldg_wt = self.root.ids['calc_screen'].ids['ldg_wt']
+        if not ldg_wt.text.isdigit():
+            self.root.ids['calc_screen'].ids['_ldg_wt'].text = "[color=#FF3D16]WEIGHT[/color]"
+        else:
+            self.root.ids['calc_screen'].ids['_ldg_wt'].text = '[b][color=#3E9933]' + ldg_wt.text + " KG[/color][/b]"
 
     def lda_txt(self, airport, runway):
         with open('airport_data.json') as ap_data:
@@ -70,6 +91,8 @@ class MainApp(App):
     def ldr_txt(self, ldr):
         lda = re.search(r'\d{4}m', self.root.ids['calc_screen'].ids['lda_txt'].text).group()[:-1]
         if int(lda) < int(ldr):
+            go_button = self.root.ids['calc_screen'].ids['go_button']
+            go_button.disabled = True
             colour = 'FF3D16'  # red
             self.op = 0
             self.flash = Clock.schedule_interval(self.flashing_ldr, 0.2)
@@ -86,7 +109,10 @@ class MainApp(App):
             self.op += 1
 
     def cancel_flash(self, *args):
+        self.root.ids['calc_screen'].ids['ldr_txt'].opacity = 1
         self.flash.cancel()
+        go_button = self.root.ids['calc_screen'].ids['go_button']
+        go_button.disabled = False
 
     def change_screen(self, screen_name):
         # get the screen manager from the main.kv file
@@ -96,7 +122,11 @@ class MainApp(App):
     def runway_buttons(self, airport):
         with open('airport_data.json') as ap_data:
             ap = json.load(ap_data)
-        airport_data = ap[airport]
+        try:
+            airport_data = ap[airport]
+        except:
+            self.root.ids['home_screen'].ids['error_text'].text = "[color=#FF3D16]UNKNOWN LOCATION[/color]"
+            return
         f = 0
         for runway in airport_data:
             f += 1
@@ -104,6 +134,7 @@ class MainApp(App):
             rwy_num = self.root.ids['calc_screen'].ids[rwy_]
             self.root.ids['calc_screen'].add_widget(rwy_num)
             self.root.ids['calc_screen'].ids[rwy_].children[0].text = str(runway)
+        self.change_screen("calc_screen")
 
     def store_units(self):
         airport = self.root.ids['home_screen'].ids['dest1'].text
@@ -148,7 +179,11 @@ class MainApp(App):
                     if lower_wind_comp == '0t':
                         lower_wind_comp = '0'
         flap = flap[-2:]
-        weight = str(float(re.search(r'\d*', weight).group()) / 1000)
+        try:
+            weight = str(float(re.search(r'\d*', weight).group()) / 1000)
+        except:
+            self.root.ids['calc_screen'].ids['ldr_txt'].text = "[color=#FF3D16]INCORRECT INPUT[/color]"
+            return
         wt_up = str(math.ceil(float(weight)))
         wt_down = str(math.floor(float(weight)))
         with open('airport_data.json') as ap_data:
@@ -165,7 +200,11 @@ class MainApp(App):
         up = math.ceil(elev)
         down = math.floor(elev)
         # interpolating with the upper weight of the two elevation figures
-        wt_up_up_data = uld_[flap][wt_up][up]
+        try:
+            wt_up_up_data = uld_[flap][wt_up][up]
+        except:
+            self.root.ids['calc_screen'].ids['ldr_txt'].text = "[color=#FF3D16]INCORRECT INPUT[/color]"
+            return
         wt_up_dwn_data = uld_[flap][wt_up][down]
         uld_up_wt = round(wt_up_dwn_data + ((wt_up_up_data - wt_up_dwn_data) * (elev - down)))
         # interpolating with the lower weight of the two elevation figures
@@ -200,8 +239,12 @@ class MainApp(App):
         print(final_wind_correct, "before additives")
 
         vapp_percent_add = 0
-        for kt in range(int(vapp_add)):
-            vapp_percent_add += 0.02
+        try:
+            for kt in range(int(vapp_add)):
+                vapp_percent_add += 0.02
+        except:
+            self.root.ids['calc_screen'].ids['ldr_txt'].text = "[color=#FF3D16]INCORRECT INPUT[/color]"
+            return
         final_ldr = final_wind_correct * (1 + vapp_percent_add)
         if reduced_np == 'REDUCED NP':
             final_ldr = final_ldr * 1.06

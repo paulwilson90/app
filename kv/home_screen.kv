@@ -28,6 +28,14 @@
             text: self.text.upper() if self.text is not None else ''
             size_hint: .3, .08
             pos_hint: {"top": .6, "center_x": .5}
+        Label:
+            id: error_text
+            rows: 1
+            markup: True
+            font_size: '20sp'
+            pos_hint: {"top": .5, "center_x": .5}
+            size_hint: .45, .05
+            markup: True
         RoundedButton:
             text: "Next"
             id: go_button
@@ -39,7 +47,6 @@
             opacity: 1 if self.state == 'normal' else .5
             on_release:
                 app.root.ids['calc_screen'].ids['airport_tile'].text= "CHOOSE RUNWAY FOR A LANDING AT " + dest1.text
-                app.change_screen("calc_screen")
                 app.runway_buttons(dest1.text)
 
 <RoundedText@TextInput>
