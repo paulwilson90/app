@@ -79,6 +79,19 @@ class MainApp(App):
         else:
             self.root.ids['calc_screen'].ids['_ldg_wt'].text = '[b][color=#3E9933]' + ldg_wt.text + " KG[/color][/b]"
 
+    def head_tail(self, wind_comp):
+        self.wind_comp = wind_comp
+
+    def wind_component(self, component):
+        wind_ = self.root.ids['calc_screen'].ids['wind_']
+        _wind = self.root.ids['calc_screen'].ids['_wind']
+        try:
+            wind_.text = component + self.wind_comp
+            _wind.text = '[b][color=#3E9933]' + component + self.wind_comp + "[/color][/b]"
+        except:
+            pass
+
+
     def lda_txt(self, airport, runway):
         with open('airport_data.json') as ap_data:
             ap = json.load(ap_data)
@@ -224,7 +237,11 @@ class MainApp(App):
         up_2 = math.ceil(uld_index)
         down_2 = math.floor(uld_index)
         # interpolating with the upper wind index of the two uld figures
-        wind_up_up_data = ap[flap][upper_wind_comp][up_2]
+        try:
+            wind_up_up_data = ap[flap][upper_wind_comp][up_2]
+        except:
+            self.root.ids['calc_screen'].ids['ldr_txt'].text = "[color=#FF3D16]WIND COMP TOO HIGH[/color]"
+            return
         wind_up_dwn_data = ap[flap][upper_wind_comp][down_2]
         wind_up_corrected_wind_slope = round(
             wind_up_dwn_data + ((wind_up_up_data - wind_up_dwn_data) * (uld_index - down_2)))

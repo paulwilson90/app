@@ -144,7 +144,6 @@
             pos_hint: {"top": .8, "center_x": .5}
             on_focus:
                 Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
-                #app.root.ids['calc_screen'].ids['_ldg_wt'].text=  '[b][color=#3E9933]' + ldg_wt.text + " KG[/color][/b]"
                 app.ldg_wt_txt()
                 app.root.ids['calc_screen'].ids['ldg_wt_'].text = self.text
                 app.enable_button()
@@ -202,6 +201,7 @@
             text: self.text.upper() if self.text is not None else ''
             on_focus:
                 Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+                app.wind_component(self.text)
 
         RoundedButton:
             text: "HEAD"
@@ -211,6 +211,7 @@
             opacity: 1 if self.state == 'normal' else .5
             disabled: True if wind.text == '' else False
             on_press:
+                app.head_tail("KT HEADWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT HEADWIND[/color][/b]"
                 app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT HEADWIND"
                 app.enable_button()
@@ -222,6 +223,7 @@
             opacity: 1 if self.state == 'normal' else .5
             disabled: True if wind.text == '' else False
             on_press:
+                app.head_tail("KT TAILWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT TAILWIND[/color][/b]"
                 app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT TAILWIND"
                 app.enable_button()
