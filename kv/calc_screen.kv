@@ -22,11 +22,14 @@
         font_size: '20sp'
         pos_hint: {"top": 1, "center_x": .5}
         size_hint: 1, .1
+
+##################################### RUNWAYS  ##################################################
+
     GridLayout:
         rows: 1
         id: rwy5
-        pos_hint: {"top": .9, "center_x": .125}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .125}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -39,12 +42,11 @@
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
-
     GridLayout:
         rows: 1
         id: rwy3
-        pos_hint: {"top": .9, "center_x": .275}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .275}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -60,8 +62,8 @@
     GridLayout:
         rows: 1
         id: rwy1
-        pos_hint: {"top": .9, "center_x": .425}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .425}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -77,8 +79,8 @@
     GridLayout:
         rows: 1
         id: rwy2
-        pos_hint: {"top": .9, "center_x": .575}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .575}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -94,8 +96,8 @@
     GridLayout:
         rows: 1
         id: rwy4
-        pos_hint: {"top": .9, "center_x": .725}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .725}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -111,8 +113,8 @@
     GridLayout:
         rows: 1
         id: rwy6
-        pos_hint: {"top": .9, "center_x": .875}
-        size_hint: .14, .08
+        pos_hint: {"top": .92, "center_x": .875}
+        size_hint: .14, .07
         spacing: 5, 5
         RoundedButton:
             text: ""
@@ -125,22 +127,26 @@
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+
+
+########################### INPUT DATA ON LEFT SIDE   ##################################################
+
     GridLayout:
         rows: 1
-        pos_hint: {"top": .8, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .83, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedText:
             id: ldg_wt
             markup: True
             multiline: False
             font_size: '20sp'
-            hint_text: "landing weight kg"
+            hint_text: "ldg weight kg"
             opacity: 1 if self.text else .7
             padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
             padding_x: [10, 0]
             text: self.text.upper() if self.text is not None else ''
-            size_hint: .3, .08
+            size_hint: .3, .07
             pos_hint: {"top": .8, "center_x": .5}
             on_focus:
                 Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
@@ -150,8 +156,8 @@
 
     GridLayout:
         rows: 1
-        pos_hint: {"top": .7, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .74, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
             text: "FLAP 10"
@@ -186,8 +192,8 @@
 
     GridLayout:
         rows: 1
-        pos_hint: {"top": .6, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .65, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedText:
             id: wind
@@ -229,8 +235,8 @@
                 app.enable_button()
     GridLayout:
         rows: 1
-        pos_hint: {"top": .5, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .56, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedText:
             id: vapp_add
@@ -242,7 +248,7 @@
             padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
             padding_x: [10, 0]
             text: self.text.upper() if self.text is not None else ''
-            size_hint: .3, .08
+            size_hint: .3, .07
             pos_hint: {"top": .4, "center_x": .5}
             on_focus:
                 Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
@@ -251,8 +257,8 @@
                 app.enable_button()
     GridLayout:
         rows: 1
-        pos_hint: {"top": .4, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .47, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
             text: "REDUCED NP"
@@ -276,8 +282,8 @@
                 app.enable_button()
     GridLayout:
         rows: 1
-        pos_hint: {"top": .3, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .38, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
             text: "REF SPEEDS INCR"
@@ -301,8 +307,8 @@
                 app.enable_button()
     GridLayout:
         rows: 1
-        pos_hint: {"top": .2, "center_x": .256}
-        size_hint: .4, .08
+        pos_hint: {"top": .29, "center_x": .256}
+        size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
             text: "WET RWY"
@@ -324,12 +330,49 @@
                 app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]DRY RUNWAY[/color][/b]"
                 app.root.ids['calc_screen'].ids['wet_dry_'].text= "DRY"
                 app.enable_button()
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .2, "center_x": .256}
+        size_hint: .4, .07
+        spacing: 5, 5
+        RoundedText:
+            id: temp
+            markup: True
+            multiline: False
+            font_size: '20sp'
+            hint_text: "ldg temp"
+            opacity: 1 if self.text else .7
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            padding_x: [10, 0]
+            text: self.text.upper() if self.text is not None else ''
+            on_focus:
+                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+                app.root.ids['calc_screen'].ids['temp_'].text = self.text
+        RoundedButton:
+            text: "BLEED ON"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
+
+        RoundedButton:
+            text: "BLEED OFF"
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            opacity: 1 if self.state == 'normal' else .5
+            on_press:
+                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
+
+##############################  TEXT COLUMN ON RIGHT SIDE   #############################
     Label:
         id: title_text
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .8, "center_x": .7}
+        pos_hint: {"top": .84, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[b][u]REQUIRED INPUTS IN RED[/u][/b]"
@@ -338,7 +381,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .7, "center_x": .7}
+        pos_hint: {"top": .79, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]RUNWAY[/color]"
@@ -347,7 +390,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .65, "center_x": .7}
+        pos_hint: {"top": .74, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]WEIGHT[/color]"
@@ -356,7 +399,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .6, "center_x": .7}
+        pos_hint: {"top": .69, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]FLAP[/color]"
@@ -365,7 +408,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .55, "center_x": .7}
+        pos_hint: {"top": .64, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#E5E542]WIND[/color]"
@@ -374,7 +417,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .5, "center_x": .7}
+        pos_hint: {"top": .59, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]VAPP[/color]"
@@ -383,7 +426,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .45, "center_x": .7}
+        pos_hint: {"top": .54, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]REDUCED/1020RPM[/color]"
@@ -392,7 +435,7 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .4, "center_x": .7}
+        pos_hint: {"top": .49, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]REF SPEEDS[/color]"
@@ -401,30 +444,59 @@
         rows: 1
         markup: True
         font_size: '20sp'
-        pos_hint: {"top": .35, "center_x": .7}
+        pos_hint: {"top": .44, "center_x": .7}
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]WET OR DRY[/color]"
     ClearBox:
-        pos_hint: {"top": .2, "center_x": .7}
-        size_hint: .45, .16
+        pos_hint: {"top": .29, "center_x": .7}
+        size_hint: .45, .13
     Label:
         id: lda_txt
         rows: 1
         markup: True
-        font_size: '23sp'
-        pos_hint: {"top": .2, "center_x": .7}
+        font_size: '22sp'
+        pos_hint: {"top": .29, "center_x": .7}
         size_hint: .45, .05
         markup: True
     Label:
         id: ldr_txt
         rows: 1
         markup: True
-        font_size: '24sp'
-        pos_hint: {"top": .1, "center_x": .7}
+        font_size: '22sp'
+        pos_hint: {"top": .22, "center_x": .7}
         size_hint: .45, .05
         markup: True
-
+    ClearBox:
+        pos_hint: {"top": .15, "center_x": .7}
+        size_hint: .45, .13
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .14, "center_x": .7}
+        size_hint: .45, .05
+        spacing: 5, 5
+        Label:
+            id: wat_limit_info
+            rows:1
+            markup: True
+            font_size: '18sp'
+            markup: True
+            opacity: 0.5
+            text: "For WAT calculation, please also enter"
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .08, "center_x": .7}
+        size_hint: .45, .05
+        spacing: 5, 5
+        Label:
+            id: wat_limit_result
+            rows:1
+            markup: True
+            font_size: '19sp'
+            markup: True
+            opacity: 0.5
+            text: "airport temp and bleed switch position"
+########################################  DATA STORAGE LABELS   ##################################
     Label:
         id: runway_
         opacity: 0
@@ -450,14 +522,20 @@
     Label:
         id: wet_dry_
         opacity: 0
+    Label:
+        id: temp_
+        opacity: 0
+    Label:
+        id: bleed_
+        opacity:0
 
-
+######################################  BUTTONS   ###################################
     RoundedButton:
         text: "Calculate"
         id: go_button
         markup: True
         font_size: '20sp'
-        pos_hint:  {"top": .3, "center_x": .7}
+        pos_hint:  {"top": .39, "center_x": .7}
         size_hint: .3, .08
         padding: 20, 20
         opacity: 1 if self.state == 'normal' else .5
