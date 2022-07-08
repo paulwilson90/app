@@ -24,6 +24,7 @@ class MainApp(App):
 
     def on_start(self):
         self.remove_rwy_buttons()
+        self.button_opacity()
 
     def remove_rwy_buttons(self):
         rwy1 = self.root.ids['calc_screen'].ids['rwy1']
@@ -70,25 +71,26 @@ class MainApp(App):
         self.root.ids['calc_screen'].ids['wet_dry_'].text = ""
         self.root.ids['calc_screen'].ids['bleed_'].text = ""
         ######################### RESTORE BUTTON OPACITY ####################
-        self.root.ids['calc_screen'].ids['rw1'].opacity = 1
-        self.root.ids['calc_screen'].ids['rw2'].opacity = 1
-        self.root.ids['calc_screen'].ids['rw3'].opacity = 1
-        self.root.ids['calc_screen'].ids['rw4'].opacity = 1
-        self.root.ids['calc_screen'].ids['rw5'].opacity = 1
-        self.root.ids['calc_screen'].ids['rw6'].opacity = 1
-        self.root.ids['calc_screen'].ids['f10'].opacity = 1
-        self.root.ids['calc_screen'].ids['f15'].opacity = 1
-        self.root.ids['calc_screen'].ids['f35'].opacity = 1
-        self.root.ids['calc_screen'].ids['tail_btn'].opacity = 1
-        self.root.ids['calc_screen'].ids['head_btn'].opacity = 1
-        self.root.ids['calc_screen'].ids['bl_off'].opacity = 1
-        self.root.ids['calc_screen'].ids['bl_on'].opacity = 1
-        self.root.ids['calc_screen'].ids['1020_r'].opacity = 1
-        self.root.ids['calc_screen'].ids['red_np'].opacity = 1
-        self.root.ids['calc_screen'].ids['ref_inc'].opacity = 1
-        self.root.ids['calc_screen'].ids['ref_off'].opacity = 1
-        self.root.ids['calc_screen'].ids['wet'].opacity = 1
-        self.root.ids['calc_screen'].ids['dry'].opacity = 1
+    def button_opacity(self):
+        self.root.ids['calc_screen'].ids['rw1'].opacity =.5
+        self.root.ids['calc_screen'].ids['rw2'].opacity =.5
+        self.root.ids['calc_screen'].ids['rw3'].opacity =.5
+        self.root.ids['calc_screen'].ids['rw4'].opacity =.5
+        self.root.ids['calc_screen'].ids['rw5'].opacity =.5
+        self.root.ids['calc_screen'].ids['rw6'].opacity =.5
+        self.root.ids['calc_screen'].ids['f10'].opacity =.5
+        self.root.ids['calc_screen'].ids['f15'].opacity =.5
+        self.root.ids['calc_screen'].ids['f35'].opacity =.5
+        self.root.ids['calc_screen'].ids['tail_btn'].opacity =.5
+        self.root.ids['calc_screen'].ids['head_btn'].opacity =.5
+        self.root.ids['calc_screen'].ids['bl_off'].opacity =.5
+        self.root.ids['calc_screen'].ids['bl_on'].opacity =.5
+        self.root.ids['calc_screen'].ids['1020_r'].opacity =.5
+        self.root.ids['calc_screen'].ids['red_np'].opacity =.5
+        self.root.ids['calc_screen'].ids['ref_inc'].opacity =.5
+        self.root.ids['calc_screen'].ids['ref_off'].opacity =.5
+        self.root.ids['calc_screen'].ids['wet'].opacity =.5
+        self.root.ids['calc_screen'].ids['dry'].opacity =.5
 
 
     def enable_button(self):
