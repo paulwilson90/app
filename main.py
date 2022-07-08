@@ -5,7 +5,7 @@ from kivy.clock import Clock
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-
+from kivy.core.window import Window
 
 class HomeScreen(Screen):
     pass
@@ -43,7 +43,7 @@ class MainApp(App):
         self.root.ids['calc_screen'].ids['_rwy'].text = "[color=#FF3D16]RUNWAY[/color]"
         self.root.ids['calc_screen'].ids['_ldg_wt'].text = "[color=#FF3D16]WEIGHT[/color]"
         self.root.ids['calc_screen'].ids['flap'].text = "[color=#FF3D16]FLAP[/color]"
-        self.root.ids['calc_screen'].ids['_wind'].text = "[color=#E5E542]WIND[/color]"
+        self.root.ids['calc_screen'].ids['_wind'].text = "[color=#8A8A8A]WIND[/color]"
         self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
         self.root.ids['calc_screen'].ids['reduced_np'].text = "[color=#FF3D16]REDUCED/1020RPM[/color]"
         self.root.ids['calc_screen'].ids['ref_speeds'].text = "[color=#FF3D16]REF SPEEDS[/color]"
@@ -61,6 +61,34 @@ class MainApp(App):
         wat_limit_result.text = "airport temp and bleed switch position"
         wat_limit_info.opacity = 0.5
         wat_limit_result.opacity = 0.5
+        self.root.ids['calc_screen'].ids['runway_'].text = ""
+        self.root.ids['calc_screen'].ids['ldg_wt_'].text = ""
+        self.root.ids['calc_screen'].ids['flap_'].text = ""
+        self.root.ids['calc_screen'].ids['vapp_add_'].text = ""
+        self.root.ids['calc_screen'].ids['reduced_np_'].text = ""
+        self.root.ids['calc_screen'].ids['ref_speeds_'].text = ""
+        self.root.ids['calc_screen'].ids['wet_dry_'].text = ""
+        self.root.ids['calc_screen'].ids['bleed_'].text = ""
+        ######################### RESTORE BUTTON OPACITY ####################
+        self.root.ids['calc_screen'].ids['rw1'].opacity = 1
+        self.root.ids['calc_screen'].ids['rw2'].opacity = 1
+        self.root.ids['calc_screen'].ids['rw3'].opacity = 1
+        self.root.ids['calc_screen'].ids['rw4'].opacity = 1
+        self.root.ids['calc_screen'].ids['rw5'].opacity = 1
+        self.root.ids['calc_screen'].ids['rw6'].opacity = 1
+        self.root.ids['calc_screen'].ids['f10'].opacity = 1
+        self.root.ids['calc_screen'].ids['f15'].opacity = 1
+        self.root.ids['calc_screen'].ids['f35'].opacity = 1
+        self.root.ids['calc_screen'].ids['tail_btn'].opacity = 1
+        self.root.ids['calc_screen'].ids['head_btn'].opacity = 1
+        self.root.ids['calc_screen'].ids['bl_off'].opacity = 1
+        self.root.ids['calc_screen'].ids['bl_on'].opacity = 1
+        self.root.ids['calc_screen'].ids['1020_r'].opacity = 1
+        self.root.ids['calc_screen'].ids['red_np'].opacity = 1
+        self.root.ids['calc_screen'].ids['ref_inc'].opacity = 1
+        self.root.ids['calc_screen'].ids['ref_off'].opacity = 1
+        self.root.ids['calc_screen'].ids['wet'].opacity = 1
+        self.root.ids['calc_screen'].ids['dry'].opacity = 1
 
 
     def enable_button(self):
@@ -120,8 +148,7 @@ class MainApp(App):
     def ldr_txt(self, ldr):
         lda = re.search(r'\d{4}m', self.root.ids['calc_screen'].ids['lda_txt'].text).group()[:-1]
         if int(lda) < int(ldr):
-            go_button = self.root.ids['calc_screen'].ids['go_button']
-            go_button.disabled = True
+            self.disable_calculate()
             colour = 'FF3D16'  # red
             self.op = 0
             self.flash = Clock.schedule_interval(self.flashing_ldr, 0.2)
@@ -129,6 +156,14 @@ class MainApp(App):
         else:
             colour = '3E9933'  # green
         self.root.ids['calc_screen'].ids['ldr_txt'].text = f"[b][u][color=#{colour}]LDR IS " + ldr + "m[/color][/u][/b]"
+
+    def disable_calculate(self):
+        go_button = self.root.ids['calc_screen'].ids['go_button']
+        go_button.disabled = True
+
+    def enable_calculate(self):
+        go_button = self.root.ids['calc_screen'].ids['go_button']
+        go_button.disabled = False
 
     def flashing_ldr(self, *args):
         self.root.ids['calc_screen'].ids['ldr_txt'].opacity = self.op
@@ -140,8 +175,7 @@ class MainApp(App):
     def cancel_flash(self, *args):
         self.root.ids['calc_screen'].ids['ldr_txt'].opacity = 1
         self.flash.cancel()
-        go_button = self.root.ids['calc_screen'].ids['go_button']
-        go_button.disabled = False
+        self.enable_calculate()
 
     def change_screen(self, screen_name):
         # get the screen manager from the main.kv file
@@ -278,6 +312,7 @@ class MainApp(App):
         wat_limit_result = self.root.ids['calc_screen'].ids['wat_limit_result']
         wat_limit_info.text = "[b][color=#8ABDE1]" + str(int(elev * 500)) + "' Elevation " + bleed + " Landing at " + temp + "°C " + "[/color][/b]"
         if wat_limit < weight:
+            self.disable_calculate()
             colour = 'FF3D16'  # red
             self.op_wat = 0
             self.flash_wat = Clock.schedule_interval(self.flashing_wat, 0.2)
@@ -299,6 +334,7 @@ class MainApp(App):
     def cancel_flash_wat(self, *args):
         self.root.ids['calc_screen'].ids['wat_limit_result'].opacity = 1
         self.flash_wat.cancel()
+        self.enable_calculate()
 
 
     def get_final_uld(self, elev, flap, wt_up, wt_down, weight, upper_wind_comp, lower_wind_comp, wind_digits, vapp_add,

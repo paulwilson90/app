@@ -48,6 +48,7 @@
             on_release:
                 app.root.ids['calc_screen'].ids['airport_tile'].text= "CHOOSE RUNWAY FOR A LANDING AT " + dest1.text
                 app.runway_buttons(dest1.text)
+                app.disable_calculate()
 
 <RoundedText@TextInput>
     hint_text: self.hint_text

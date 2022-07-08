@@ -33,15 +33,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw5
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw1'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw2'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw3'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw4'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw6'].opacity = 1
     GridLayout:
         rows: 1
         id: rwy3
@@ -50,15 +56,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw3
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw1'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw2'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw4'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw5'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw6'].opacity = 1
     GridLayout:
         rows: 1
         id: rwy1
@@ -67,15 +79,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw1
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw2'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw3'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw4'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw5'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw6'].opacity = 1
     GridLayout:
         rows: 1
         id: rwy2
@@ -84,15 +102,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw2
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw1'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw3'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw4'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw5'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw6'].opacity = 1
     GridLayout:
         rows: 1
         id: rwy4
@@ -101,15 +125,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw4
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw1'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw2'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw3'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw5'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw6'].opacity = 1
     GridLayout:
         rows: 1
         id: rwy6
@@ -118,15 +148,21 @@
         spacing: 5, 5
         RoundedButton:
             text: ""
+            id:rw6
             markup: True
             font_size: '20sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['_rwy'].text= "[b][color=#3E9933]RUNWAY " + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['runway_'].text = self.text
                 app.lda_txt(app.root.ids['home_screen'].ids['dest1'].text, self.text)
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['rw1'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw2'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw3'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw4'].opacity = 1
+                app.root.ids['calc_screen'].ids['rw5'].opacity = 1
 
 
 ########################### INPUT DATA ON LEFT SIDE   ##################################################
@@ -161,34 +197,43 @@
         spacing: 5, 5
         RoundedButton:
             text: "FLAP 10"
+            id: f10
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text +'[/color][/b]'
                 app.root.ids['calc_screen'].ids['flap_'].text = self.text
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['f15'].opacity = 1
+                app.root.ids['calc_screen'].ids['f35'].opacity = 1
         RoundedButton:
             text: "FLAP 15"
+            id: f15
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['flap_'].text = self.text
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['f10'].opacity = 1
+                app.root.ids['calc_screen'].ids['f35'].opacity = 1
         RoundedButton:
             text: "FLAP 35"
+            id: f35
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
                 app.root.ids['calc_screen'].ids['flap'].text= '[b][color=#3E9933]' + self.text + '[/color][/b]'
                 app.root.ids['calc_screen'].ids['flap_'].text = self.text
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['f10'].opacity = 1
+                app.root.ids['calc_screen'].ids['f15'].opacity = 1
 
     GridLayout:
         rows: 1
@@ -211,31 +256,90 @@
 
         RoundedButton:
             text: "HEAD"
+            id: head_btn
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             disabled: True if wind.text == '' else False
             on_press:
                 app.head_tail("KT HEADWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT HEADWIND[/color][/b]"
                 app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT HEADWIND"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['tail_btn'].opacity = 1
+
         RoundedButton:
             text: "TAIL"
+            id: tail_btn
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             disabled: True if wind.text == '' else False
             on_press:
                 app.head_tail("KT TAILWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT TAILWIND[/color][/b]"
                 app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT TAILWIND"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['head_btn'].opacity = 1
+    ClearBox:
+        pos_hint: {"top": .66, "center_x": .27}
+        size_hint: .445, .18
+    Label:
+        id: optional_txt
+        rows: 1
+        markup: True
+        font_size: '13sp'
+        pos_hint: {"top": .575, "center_x": .47}
+        halign: 'center'
+        size_hint: .2, .01
+        markup: True
+        text: "[color=#FBBF34]O\nP\nT\nI\nO\nN\nA\nL[/color]"
+
     GridLayout:
         rows: 1
         pos_hint: {"top": .56, "center_x": .256}
+        size_hint: .4, .07
+        spacing: 5, 5
+        RoundedText:
+            id: temp
+            markup: True
+            multiline: False
+            font_size: '20sp'
+            hint_text: "ldg temp"
+            opacity: 1 if self.text else .7
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            padding_x: [10, 0]
+            text: self.text.upper() if self.text is not None else ''
+            on_focus:
+                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
+                app.root.ids['calc_screen'].ids['temp_'].text = self.text
+        RoundedButton:
+            text: "BLEED ON"
+            id:bl_on
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            disabled: True if temp.text == '' else False
+            on_press:
+                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['bl_off'].opacity = 1
+        RoundedButton:
+            text: "BLEED OFF"
+            id:bl_off
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            disabled: True if temp.text == '' else False
+            on_press:
+                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['bl_on'].opacity = 1
+    GridLayout:
+        rows: 1
+        pos_hint: {"top": .47, "center_x": .256}
         size_hint: .4, .07
         spacing: 5, 5
         RoundedText:
@@ -257,114 +361,92 @@
                 app.enable_button()
     GridLayout:
         rows: 1
-        pos_hint: {"top": .47, "center_x": .256}
-        size_hint: .4, .07
-        spacing: 5, 5
-        RoundedButton:
-            text: "REDUCED NP"
-            markup: True
-            font_size: '18sp'
-            padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
-            on_press:
-                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]REDUCED NP[/color][/b]"
-                app.root.ids['calc_screen'].ids['reduced_np_'].text= "REDUCED NP"
-                app.enable_button()
-        RoundedButton:
-            text: "1020 RPM"
-            markup: True
-            font_size: '18sp'
-            padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
-            on_press:
-                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]1020 RPM[/color][/b]"
-                app.root.ids['calc_screen'].ids['reduced_np_'].text= "1020 RPM"
-                app.enable_button()
-    GridLayout:
-        rows: 1
         pos_hint: {"top": .38, "center_x": .256}
         size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
-            text: "REF SPEEDS INCR"
+            text: "REDUCED NP"
+            id: red_np
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
-                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS INCR[/color][/b]"
-                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS INCR"
+                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]REDUCED NP[/color][/b]"
+                app.root.ids['calc_screen'].ids['reduced_np_'].text= "REDUCED NP"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['1020_r'].opacity = 1
         RoundedButton:
-            text: "REF SPEEDS OFF"
+            text: "1020 RPM"
+            id: 1020_r
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
-                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS OFF[/color][/b]"
-                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS OFF"
+                app.root.ids['calc_screen'].ids['reduced_np'].text= "[b][color=#3E9933]1020 RPM[/color][/b]"
+                app.root.ids['calc_screen'].ids['reduced_np_'].text= "1020 RPM"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['red_np'].opacity = 1
     GridLayout:
         rows: 1
         pos_hint: {"top": .29, "center_x": .256}
         size_hint: .4, .07
         spacing: 5, 5
         RoundedButton:
-            text: "WET RWY"
+            text: "REF SPEEDS INCR"
+            id: ref_inc
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
-                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]WET RUNWAY[/color][/b]"
-                app.root.ids['calc_screen'].ids['wet_dry_'].text= "WET"
+                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS INCR[/color][/b]"
+                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS INCR"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['ref_off'].opacity = 1
         RoundedButton:
-            text: "DRY RWY"
+            text: "REF SPEEDS OFF"
+            id: ref_off
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
-                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]DRY RUNWAY[/color][/b]"
-                app.root.ids['calc_screen'].ids['wet_dry_'].text= "DRY"
+                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS OFF[/color][/b]"
+                app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS OFF"
                 app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['ref_inc'].opacity = 1
     GridLayout:
         rows: 1
         pos_hint: {"top": .2, "center_x": .256}
         size_hint: .4, .07
         spacing: 5, 5
-        RoundedText:
-            id: temp
-            markup: True
-            multiline: False
-            font_size: '20sp'
-            hint_text: "ldg temp"
-            opacity: 1 if self.text else .7
-            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
-            padding_x: [10, 0]
-            text: self.text.upper() if self.text is not None else ''
-            on_focus:
-                Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
-                app.root.ids['calc_screen'].ids['temp_'].text = self.text
         RoundedButton:
-            text: "BLEED ON"
+            text: "WET RWY"
+            id: wet
             markup: True
             font_size: '18sp'
             padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
             on_press:
-                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
+                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]WET RUNWAY[/color][/b]"
+                app.root.ids['calc_screen'].ids['wet_dry_'].text= "WET"
+                app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['dry'].opacity = 1
+        RoundedButton:
+            text: "DRY RWY"
+            id: dry
+            markup: True
+            font_size: '18sp'
+            padding: 20, 20
+            on_press:
+                app.root.ids['calc_screen'].ids['wet_dry'].text= "[b][color=#3E9933]DRY RUNWAY[/color][/b]"
+                app.root.ids['calc_screen'].ids['wet_dry_'].text= "DRY"
+                app.enable_button()
+                self.opacity = .5
+                app.root.ids['calc_screen'].ids['wet'].opacity = 1
 
-        RoundedButton:
-            text: "BLEED OFF"
-            markup: True
-            font_size: '18sp'
-            padding: 20, 20
-            opacity: 1 if self.state == 'normal' else .5
-            on_press:
-                app.root.ids['calc_screen'].ids['bleed_'].text = self.text
 
 ##############################  TEXT COLUMN ON RIGHT SIDE   #############################
     Label:
@@ -411,7 +493,7 @@
         pos_hint: {"top": .64, "center_x": .7}
         size_hint: .45, .05
         markup: True
-        text: "[color=#E5E542]WIND[/color]"
+        text: "[color=#8A8A8A]WIND[/color]"
     Label:
         id: _vapp_add
         rows: 1
@@ -448,9 +530,9 @@
         size_hint: .45, .05
         markup: True
         text: "[color=#FF3D16]WET OR DRY[/color]"
-    ClearBox:
+    ClearGreenBox:
         pos_hint: {"top": .29, "center_x": .7}
-        size_hint: .45, .13
+        size_hint: .47, .13
     Label:
         id: lda_txt
         rows: 1
@@ -467,9 +549,9 @@
         pos_hint: {"top": .22, "center_x": .7}
         size_hint: .45, .05
         markup: True
-    ClearBox:
+    ClearGreenBox:
         pos_hint: {"top": .15, "center_x": .7}
-        size_hint: .45, .13
+        size_hint: .47, .13
     GridLayout:
         rows: 1
         pos_hint: {"top": .14, "center_x": .7}
@@ -577,6 +659,18 @@
     canvas.before:
         Color:
             rgb: utils.get_color_from_hex("#FBBF34")
+        Line:
+            rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
+            width: 1.5
+<ClearGreenBox@Label>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    back_color: utils.get_color_from_hex("#2C910C")
+    border_radius: 18
+    color: self.back_color
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex("#2C910C")
         Line:
             rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
             width: 1.5
