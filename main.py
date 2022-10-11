@@ -219,6 +219,8 @@ class MainApp(App):
     def get_lda_and_elev(self, airport, runway, weight, flap, wind_comp, vapp_add, reduced_np, ref_speeds, wet_dry,
                          temp, bleed):
         wind_digits = re.search(r'\d*', wind_comp).group()
+        if not wind_digits:
+            wind_comp = ''
         if wind_comp == '':
             wind_digits = '0'
             wind_comp = '0'
