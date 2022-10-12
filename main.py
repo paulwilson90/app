@@ -39,6 +39,8 @@ class MainApp(App):
         self.root.ids['calc_screen'].remove_widget(rwy4)
         self.root.ids['calc_screen'].remove_widget(rwy5)
         self.root.ids['calc_screen'].remove_widget(rwy6)
+        ## this will make the vapp_additive text field enabled again
+        self.root.ids['calc_screen'].ids['vapp_add'].disabled = False
 
     def restore_original_text(self):
         self.root.ids['calc_screen'].ids['_rwy'].text = "[color=#FF3D16]RUNWAY[/color]"
@@ -111,13 +113,28 @@ class MainApp(App):
     def vapp_vref_txt(self):
         vapp_add = self.root.ids['calc_screen'].ids['vapp_add']
         if not vapp_add.text.isdigit():
-            self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
+            if vapp_add.text == 'VAPP=VREF ICE':
+                self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#52D2F7]VAPP=VREF ICE[/color][/b]"
+            else:
+                self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
         else:
             if vapp_add.text == '0':
                 self.root.ids['calc_screen'].ids['_vapp_add'].text = "[b][color=#3E9933]VAPP = VREF[/color][/b]"
             else:
                 self.root.ids['calc_screen'].ids[
                     '_vapp_add'].text = "[b][color=#3E9933]VREF + " + vapp_add.text + '[/color][/b]'
+
+    def set_vapp_text(self):
+        """This will be run with the press of the REF SPEEDS OFF button and will check for digit
+        in the VREF text field, if a digit exists leave it there, else wipe the text"""
+        vapp_add = self.root.ids['calc_screen'].ids['vapp_add']
+        if vapp_add.text.isdigit():
+            pass
+        else:
+            vapp_add.text = ""
+            self.root.ids['calc_screen'].ids['vapp_add_'].text = ''
+            self.root.ids['calc_screen'].ids['_vapp_add'].text = "[color=#FF3D16]VAPP[/color]"
+            self.enable_button()
 
     def ldg_wt_txt(self):
         ldg_wt = self.root.ids['calc_screen'].ids['ldg_wt']
@@ -132,11 +149,29 @@ class MainApp(App):
     def wind_component(self, component):
         wind_ = self.root.ids['calc_screen'].ids['wind_']
         _wind = self.root.ids['calc_screen'].ids['_wind']
+        if component == '':
+            self.root.ids['calc_screen'].ids['tail_btn'].opacity = .5
+            self.root.ids['calc_screen'].ids['head_btn'].opacity = .5
+            wind_.text = ''
+            _wind.text = "[color=#8A8A8A]WIND[/color]"
+            return
+
         try:
             wind_.text = component + self.wind_comp
             _wind.text = '[b][color=#3E9933]' + component + self.wind_comp + "[/color][/b]"
         except:
             pass
+
+    def bleed_swich_opacity(self, ldg_temp):
+        """This is run with on_focus of the ldg_temp text box and if text box empty
+        will make bleed switches opacity = 0.5 and will reset the output text field to default"""
+        if ldg_temp == '':
+            self.root.ids['calc_screen'].ids['bl_off'].opacity = .5
+            self.root.ids['calc_screen'].ids['bl_on'].opacity = .5
+            self.root.ids['calc_screen'].ids['wat_limit_info'].text = "For WAT calculation, please also enter"
+            self.root.ids['calc_screen'].ids['wat_limit_info'].opacity = 0.5
+            self.root.ids['calc_screen'].ids['wat_limit_result'].text = "airport temp and bleed switch position"
+            self.root.ids['calc_screen'].ids['wat_limit_result'].opacity = 0.5
 
     def lda_txt(self, airport, runway):
         with open('airport_data.json') as ap_data:

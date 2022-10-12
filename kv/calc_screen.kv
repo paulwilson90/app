@@ -262,9 +262,9 @@
             padding: 20, 20
             disabled: True if wind.text == '' else False
             on_press:
-                app.head_tail("KT HEADWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT HEADWIND[/color][/b]"
-                app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT HEADWIND"
+                app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT HEADWIND[/color][/b]"
+                app.head_tail("KT HEADWIND")
                 app.enable_button()
                 self.opacity = 1
                 app.root.ids['calc_screen'].ids['tail_btn'].opacity =.5
@@ -277,9 +277,9 @@
             padding: 20, 20
             disabled: True if wind.text == '' else False
             on_press:
-                app.head_tail("KT TAILWIND")
                 app.root.ids['calc_screen'].ids['_wind'].text= '[b][color=#3E9933]' + wind.text + "KT TAILWIND[/color][/b]"
                 app.root.ids['calc_screen'].ids['wind_'].text= wind.text + "KT TAILWIND"
+                app.head_tail("KT TAILWIND")
                 app.enable_button()
                 self.opacity = 1
                 app.root.ids['calc_screen'].ids['head_btn'].opacity =.5
@@ -315,6 +315,7 @@
             on_focus:
                 Clock.schedule_once(lambda dt: self.select_all()) if self.focus else None
                 app.root.ids['calc_screen'].ids['temp_'].text = self.text
+                app.bleed_swich_opacity(self.text)
         RoundedButton:
             text: "BLEED ON"
             id:bl_on
@@ -400,11 +401,18 @@
             font_size: '18sp'
             padding: 20, 20
             on_press:
-                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#3E9933]REF SPEEDS INCR[/color][/b]"
+                app.root.ids['calc_screen'].ids['ref_speeds'].text= "[b][color=#52D2F7]REF SPEEDS INCR[/color][/b]"
                 app.root.ids['calc_screen'].ids['ref_speeds_'].text= "REF SPEEDS INCR"
                 app.enable_button()
                 self.opacity = 1
                 app.root.ids['calc_screen'].ids['ref_off'].opacity =.5
+                app.root.ids['calc_screen'].ids['vapp_add'].text = "VAPP=VREF ICE"
+                app.root.ids['calc_screen'].ids['vapp_add'].disabled = True
+
+                ### item carried from vapp_add widget above ###
+                app.vapp_vref_txt()
+                app.root.ids['calc_screen'].ids['vapp_add_'].text= '0'
+
         RoundedButton:
             text: "REF SPEEDS OFF"
             id: ref_off
@@ -417,6 +425,8 @@
                 app.enable_button()
                 self.opacity = 1
                 app.root.ids['calc_screen'].ids['ref_inc'].opacity =.5
+                app.set_vapp_text()
+                app.root.ids['calc_screen'].ids['vapp_add'].disabled = False
     GridLayout:
         rows: 1
         pos_hint: {"top": .2, "center_x": .256}
