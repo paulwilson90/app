@@ -336,6 +336,8 @@ class MainApp(App):
         try:
             temp_up_up_data = wat[rpm][temp_up][elev_up]
         except:
+            self.root.ids['calc_screen'].ids['wat_limit_info'].opacity = 1
+            self.root.ids['calc_screen'].ids['wat_limit_result'].opacity = 1
             self.root.ids['calc_screen'].ids['wat_limit_info'].text = "[b][color=#FF3D16]TEMP TOO HIGH[/color][/b]"
             self.root.ids['calc_screen'].ids['wat_limit_result'].text = "[b][color=#FF3D16]SWITCH BLEED OFF[/color][/b]"
             return
